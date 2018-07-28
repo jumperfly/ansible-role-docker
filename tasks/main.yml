@@ -1,0 +1,12 @@
+- name: Configure docker yum repo
+  yum_repository:
+    name: "{{ docker_yum_repo.name }}"
+    description: "{{ docker_yum_repo.description }}"
+    baseurl: "{{ docker_yum_repo.baseurl }}"
+    gpgcheck: "{{ docker_yum_repo.gpgcheck }}"
+    gpgkey: "{{ docker_yum_repo.gpgkey }}"
+- name: Ensure {{ docker_package }} is installed and up to date
+  package: name={{ docker_package }} state=latest
+  notify: restart docker
+- name: Ensure docker service is enabled
+  service: name=docker enabled=yes
