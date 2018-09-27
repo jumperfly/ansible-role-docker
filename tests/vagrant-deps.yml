@@ -1,13 +1,7 @@
 - hosts: all
   become: yes
   tasks:
-  - name: Generate requirements.yml
-    command: python /vagrant/tests/requirements-gen.py /vagrant/meta/main.yml /tmp/requirements.yml
-  - name: Check if dependencies exist
-    stat: path=/tmp/requirements.yml
-    register: stat_result
-  - name: Install dependencies
-    command: ansible-galaxy install -r /tmp/requirements.yml -p /etc/ansible/roles
-    when: stat_result.stat.exists
-  - name: Copy role
-    synchronize: src=/vagrant/ dest=/etc/ansible/roles/docker/ rsync_opts=--exclude=.git
+  - name: Create role dir
+    file: path=/etc/ansible/role state=directory
+  - name: Link role
+    file: src=/vagrant/ dest=/etc/ansible/roles/docker state=link
