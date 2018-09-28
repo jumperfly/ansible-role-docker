@@ -1,7 +1,0 @@
-- hosts: all
-  become: yes
-  tasks:
-  - name: Create role dir
-    file: path=/etc/ansible/role state=directory
-  - name: Link role
-    file: src=/vagrant/ dest=/etc/ansible/roles/docker state=link

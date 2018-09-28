@@ -13,10 +13,7 @@ Vagrant.configure("2") do |config|
     v.cpus = 1
   end
 
-  config.vm.provision "ansible_local" do |ansible|
-    ansible.compatibility_mode = "2.0"
-    ansible.playbook = "tests/vagrant-deps.yml"
-  end
+  config.vm.provision "shell", inline: "mkdir -p /etc/ansible/roles && ln -sfn /vagrant /etc/ansible/roles/docker"
 
   config.vm.provision "ansible_local" do |ansible|
     ansible.compatibility_mode = "2.0"

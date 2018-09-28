@@ -9,6 +9,8 @@
   package: name=docker-ce state=latest
 - name: Ensure docker configuration directory exists
   file: path=/etc/docker state=directory
+- name: Create docker daemon.json
+  copy: dest=/etc/docker/daemon.json content={{ docker_daemon_json_data }}
 - name: Ensure docker started
   service: name=docker state=started
 - name: Ensure docker service is enabled
