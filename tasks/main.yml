@@ -1,3 +1,7 @@
+# Workaround to install docker 17.03 - https://github.com/docker/for-linux/issues/20
+- name: Disable yum obsolete checks (17.x workaround)
+  lineinfile: path=/etc/yum.conf regexp=^obsoletes=[01]$ line="obsoletes=0"
+  when: docker_version is version('18', '<')
 - name: Configure Docker YUM repository
   yum_repository:
     name: docker-ce-stable
