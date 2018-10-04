@@ -15,6 +15,16 @@
   file: path=/etc/docker state=directory
 - name: Create docker daemon.json
   copy: dest=/etc/docker/daemon.json content="{{ docker_daemon_json_data | to_nice_json }}\n"
+- name: Create sysconfig file
+  copy: src=sysconfig-docker dest=/etc/sysconfig/docker force=no
+- name: Create service override directory
+  file: path=/etc/systemd/system/docker.service.d state=directory
+- name: Create service override file
+  copy: src=service-override.conf dest=/etc/systemd/system/docker.service.d/override.conf force=no
+  register: docker_service_override_result
+- name: Execute daemon reload
+  systemd: daemon_reload=yes
+  when: docker_service_override_result.changed
 - name: Ensure docker started
   service: name=docker state=started
 - name: Ensure docker service is enabled
