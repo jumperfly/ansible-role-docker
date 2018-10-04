@@ -1,2 +1,5 @@
 # Value of the --bip argument passed to dockerd
 DOCKER_BIP=172.17.0.1/16
+
+# Recommended for Kubernetes
+DOCKER_NOFILE=1000000
