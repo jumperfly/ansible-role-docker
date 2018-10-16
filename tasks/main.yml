@@ -16,7 +16,7 @@
 - name: Create docker daemon.json
   copy: dest=/etc/docker/daemon.json content="{{ docker_daemon_json_data | to_nice_json }}\n"
 - name: Create sysconfig file
-  copy: src=sysconfig-docker dest=/etc/sysconfig/docker force=no
+  template: src=sysconfig-docker.j2 dest=/etc/sysconfig/docker force=no
 - name: Create service override directory
   file: path=/etc/systemd/system/docker.service.d state=directory
 - name: Create service override file

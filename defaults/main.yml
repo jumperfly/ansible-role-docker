@@ -2,3 +2,4 @@ docker_version: 18.06.*
 docker_yum_repo_url: https://download.docker.com/linux/centos/7/x86_64/stable
 docker_yum_repo_gpg: https://download.docker.com/linux/centos/gpg
 docker_daemon_json_data: {}
+#docker_insecure_registry: undefined

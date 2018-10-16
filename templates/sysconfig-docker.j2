@@ -1,0 +1,11 @@
+# Value of arguments passed to dockerd
+DOCKER_BIP=--bip 172.17.0.1/16
+{% if docker_insecure_registry is defined %}
+DOCKER_INSECURE_REGISTRY=--insecure-registry {{ docker_insecure_registry }}
+{% else %}
+#DOCKER_INSECURE_REGISTRY=--insecure-registry localhost:5000
+{% endif %}
+#DOCKER_OTHER_ARGS=
+
+# Recommended for Kubernetes
+DOCKER_NOFILE=1000000
