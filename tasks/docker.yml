@@ -1,0 +1,6 @@
+- name: Include docker-install.yml
+  include_tasks: docker-install.yml
+  tags: docker_install
+- name: Include docker-service.yml
+  include_tasks: docker-service.yml
+  tags: docker_service
