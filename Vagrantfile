@@ -2,8 +2,8 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "jumperfly/centos-7-ansible"
-  config.vm.box_version = "1804.02.01"
+  config.vm.box = "jumperfly/ansible"
+  config.vm.box_version = "29.11.5"
   config.vm.box_check_update = false
   config.ssh.insert_key = false
   config.vm.network "forwarded_port", guest: 2375, host: 2375
