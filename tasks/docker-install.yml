@@ -7,7 +7,9 @@
     gpgcheck: yes
 - name: Ensure docker is installed and up to date
   package:
-    name: docker-ce-{{ docker_version }}
+    name:
+      - docker-ce-cli-{{ docker_version }}
+      - docker-ce-{{ docker_version }}
     state: installed
 - name: Ensure docker configuration directory exists
   file:
